@@ -8,7 +8,7 @@ from whoosh.fields import ID, TEXT, Schema
 from whoosh.reading import TermNotFound
 from whoosh.qparser import QueryParser
 
-SCHEMA = Schema()  # TODO: define index
+SCHEMA = Schema(title=TEXT(stored=True), path=ID(stored=True), content=TEXT)  # TODO: define index
 
 
 def get_or_create_index(index_dir):
