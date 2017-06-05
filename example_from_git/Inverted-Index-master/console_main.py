@@ -1,15 +1,17 @@
 import sys, os
 
+
+
 projectpath = os.path.dirname(os.path.realpath('console_main.py'))
 libpath = projectpath + '/lib_cosine'
 sys.path.append(libpath)
 os.chdir(projectpath)
 
 
-
+from pprint import  pprint
 from pymongo import MongoClient
 import querying_cosine as qur
-
+from bson.objectid import ObjectId
 
 
 
@@ -19,8 +21,9 @@ client = MongoClient()
 db = client.Inverted_Index
 # Choose a folder containing documents
 folder = 'New Testament'
+documentTable = 'documents'
 collection = db[folder]
-
+documentCollection = db[documentTable]
 
 class browser():
     def __init__(self, parent=None):
@@ -39,9 +42,21 @@ class browser():
         for word in words:
             index[word] = collection.find({'_id': word})[0]['info']
         # Rank the documents according to the query
-        results = qur.rankDocuments(index, words)
+        results = qur.rankDocuments(index, words , collection.count())
+
+
+        tt = []
+
         for result in results:
-            print(result[0] + ' : ' + str(round(result[1], 2)))
+            print(str(result[0]) + ' : ' + str(round(result[1], 2)))
+
+            print("============================")
+
+            test = documentCollection.find_one({"_id": result[0]})
+
+            # pprint(test)
+            print("============XXX=============")
+
 
 
 def tf_search():
