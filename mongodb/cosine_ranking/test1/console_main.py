@@ -6,6 +6,7 @@ projectpath = os.path.dirname(os.path.realpath('console_main.py'))
 libpath = projectpath + '/lib_cosine'
 sys.path.append(libpath)
 os.chdir(projectpath)
+import CommonNames as CN
 
 
 from pprint import  pprint
@@ -16,14 +17,22 @@ from bson.objectid import ObjectId
 
 
 
-# Connect to the database containing inverted indexes
+# database collection settings
+import CommonNames as CN
+
 client = MongoClient()
-db = client.Inverted_Index
-# Choose a folder containing documents
-folder = 'New Testament'
-documentTable = 'documents'
-collection = db[folder]
-documentCollection = db[documentTable]
+db = CN.getDatabase(client)
+index_col_name = CN.indexCollectionName()
+document_col_name = CN.documentCollectionName()
+
+
+# ==============================
+
+
+
+
+indexCollection = db[index_col_name]
+documentCollection = db[document_col_name]
 
 class browser():
     def __init__(self, parent=None):
@@ -37,18 +46,29 @@ class browser():
 
         words = qur.cleanQuery(text)
 
+        print(words)
         # Collect the information for each word of the query
         index = {}
         for word in words:
-            index[word] = collection.find({'_id': word})[0]['info']
+            print(word +" ")
+
+            try:
+
+                index[word] = indexCollection.find({'_id': word})[0]['info']
+                print(index[word])
+
+            except :
+                print("not found")
+
+
         # Rank the documents according to the query
-        results = qur.rankDocuments(index, words , collection.count())
+        results = qur.rankDocuments(index, words, indexCollection.count())
 
 
         tt = []
 
         for result in results:
-            print(str(result[0]) + ' : ' + str(round(result[1], 2)))
+            print(str(result[0]) + ' : ' + str(round(result[1], 10)))
 
             print("============================")
 

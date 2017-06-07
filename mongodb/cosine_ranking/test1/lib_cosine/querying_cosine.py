@@ -4,12 +4,14 @@ from nltk.corpus import stopwords
 import re
 
 def cleanQuery(string):
-    frenchStopWords = stopwords.words('english')
+
+    # frenchStopWords = stopwords.words('english')
+
     p = re.compile('\w+')
     words = p.findall(string)
     words = [word.lower() for word in words]
     words = [fs().stemWord(word) for word in words]
-    words = [word for word in words if word not in frenchStopWords]
+    # words = [word for word in words if word not in frenchStopWords]
     return words
 
 
@@ -35,41 +37,49 @@ def rankDocuments(index, words ,numberOfDocuments):
 
     for word in words:
 
-        for document in index[word]['document(s)'].keys():
-
-            # Term Frequency (log to reduce document size scale effect)
-            TF = index[word]['document(s)'][document]['frequency']
-            DF = index[word]['document frequency']
-            doc_id = index[word]['document(s)'][document]['doc_id']
-
-
-            if TF > 0:
-                TF = 1 + log(TF)
-            else:
-                TF = 0
-
-
-            idf = numberOfDocuments / DF
-            idf = log(idf ,10)
-
-            tfidf = TF * idf
 
 
 
-            # Store scores in the ranking dictionary
-            if document not in rankings:
-                rankings[document] = TF
+        if word in index:
+            #
+            # print(index[word])
+            # continue
+
+            for document in index[word]['document(s)'].keys():
+
+                # Term Frequency (log to reduce document size scale effect)
+                TF = index[word]['document(s)'][document]['frequency']
+                DF = index[word]['document frequency']
+                doc_id = index[word]['document(s)'][document]['doc_id']
 
 
-                # document that this term
+                if TF > 0:
+                    TF = 1 + log(TF)
+                else:
+                    TF = 0
 
-            else:
-                rankings[document] += TF
 
-            if doc_id not in doclist:
-                doclist[doc_id] = []
+                idf = numberOfDocuments / DF
+                idf = log(idf ,10)
 
-            doclist[doc_id].append((word ,tfidf))
+                tfidf = TF * idf
+
+
+
+                # Store scores in the ranking dictionary
+                if document not in rankings:
+                    rankings[document] = TF
+
+
+                    # document that this term
+
+                else:
+                    rankings[document] += TF
+
+                if doc_id not in doclist:
+                    doclist[doc_id] = []
+
+                doclist[doc_id].append((word ,tfidf))
 
 
 

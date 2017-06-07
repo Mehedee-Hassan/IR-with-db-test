@@ -4,10 +4,19 @@ import re
 from pymongo import MongoClient
 
 
-
+# database collection settings
+import CommonNames as CN
 
 client = MongoClient()
-db = client.Inverted_Index
+db = CN.getDatabase(client)
+index_col_name = CN.indexCollectionName()
+document_col_name = CN.documentCollectionName()
+
+
+# ==============================
+
+
+
 
 frenchStopWords = stopwords.words('english')
 p = re.compile('\w+')
@@ -26,37 +35,47 @@ def clean(data):
     # Done!
     return words
 
-def index(file, words, index,id):
+def index(file, words, index, id):
+
+    doc_id = str(id)
+
     for position in range(len(words)):
         word = words[position]     
+
         # If the word is not in the index
         if words[position] not in index:
-            index[word] = {'term frequency' : 1,
+
+            index[word] = {
+                           # 'term frequency' : 1,
                            'document frequency' : 1,
-                           'document(s)' : {file : {'frequency' : 1,
-                                                    'position(s)' : [position],
+                           'document(s)' : {doc_id : {'frequency' : 1,
+                                                    # 'position(s)' : [position],
                                                     'doc_id'    : id
-                                                  }
-                                          }
+                                                      }
+                                            }
                            }
         # If the word is in the index
         else:
-            index[word]['term frequency'] += 1
+            # index[word]['term frequency'] += 1
             # If the word has not been found in this document
-            if file not in index[word]['document(s)']:
+            if doc_id not in index[word]['document(s)']:
                 index[word]['document frequency'] += 1
-                index[word]['document(s)'][file] = {'frequency' : 1,
-                                                    'position(s)' : [position],
+                index[word]['document(s)'][doc_id] = {'frequency' : 1,
+                                                      # 'position(s)' : [position],
                                                     'doc_id': id
-                                                    }
+                                                      }
             # If the word has been found in this document
             else:
-                 index[word]['document(s)'][file]['frequency'] += 1
-                 index[word]['document(s)'][file]['position(s)'].append(position)
+                 index[word]['document(s)'][doc_id]['frequency'] += 1
+                 # index[word]['document(s)'][file]['position(s)'].append(position)
+
+
     return index
 
-def store(index, folder):
-    collection = db[folder]
+def store(index, index_col_name):
+    collection = db[index_col_name]
+
+
     for word in index:
         collection.save({'_id' : word, 'info' : index[word]})
     
