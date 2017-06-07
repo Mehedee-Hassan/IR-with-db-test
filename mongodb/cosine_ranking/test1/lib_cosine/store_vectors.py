@@ -1,5 +1,7 @@
 
 import sys, os
+from pprint import pprint
+
 projectpath = os.path.dirname(os.path.realpath('idf_storage.py'))
 libpath = projectpath + '/lib_cosine'
 sys.path.append(libpath)
@@ -60,7 +62,7 @@ def TFVectorForDoc():
 
                 db[tfvectDoc_col_name].insert_one({
                     '_id': doc_id_as_key,
-                    '_tf': [{document['_id']:d[doc_id_as_key]['frequency']}]
+                    '_tf': {document['_id']:d[doc_id_as_key]['frequency']}
                 })
 
 
@@ -71,11 +73,13 @@ def TFVectorForDoc():
 
                     tf_list = ((db[tfvectDoc_col_name].find_one({'_id': doc_id_as_key})))
 
-                    tf_list = list(tf_list['_tf'])
+                    tf_list = (tf_list['_tf'])
 
+                    # pprint(tf_list)
                     # append new object to old one
-                    tf_list.append({document['_id']: d[doc_id_as_key]['frequency']})
+                    tf_list[document['_id']] = d[doc_id_as_key]['frequency']
 
+                    # pprint(tf_list)
 
                     # update collection
 
@@ -100,41 +104,50 @@ def saveNormalization():
 
     for element in data:
 
+        pprint(element)
         sumtf = 0
-        for tf in element['_tf']:
-            print(tf)
-            for key ,value in tf.items():
-               sumtf += (value*value)
-            print(sumtf)
-        #
-        #
-        # sq = math.sqrt(sumtf)
-        #
-        #
-        #
-        # normlist = []
-        #
-        # for tf in element['_tf']:
-        #
-        #     for key ,value in tf:
-        #
-        #         tempNorm = value/sq
-        #         normlist.append({key:tempNorm})
-        #
-        # try:
-        #
-        #
-        #     # update collection
-        #
-        #     db[tfvectDoc_col_name].update_one(
-        #         {'_id': element['_id']},
-        #         {'_normtf':normlist}
-        #
-        #     )
-        #
-        # except:
-        #     print("null")
+        for tf in element['_tf'].items():
+
+            # pprint(tf)
+            # pprint(tf[1])
+
+            sumtf += (tf[1]*tf[1])
+
+
+        print(sumtf)
+        sq = math.sqrt(sumtf)
+
+
+
+        normlist = {}
+
+        for tf in element['_tf'].items():
+
+            tempNorm = tf[1]/sq
+            normlist[tf[0]] = tempNorm
+
+        try:
+
+
+            # update collection
+
+            db[tfvectDoc_col_name].update_one(
+                {'_id': element['_id']},
+                {
+                    "$set": {"_normtf":normlist}
+                }
+
+
+            )
+
+        except:
+            print("null")
+
+
+ # save normalized vector for each document's words
 
 
 # TFVectorForDoc()
+
+# save normalized vector for each document's words
 saveNormalization()
