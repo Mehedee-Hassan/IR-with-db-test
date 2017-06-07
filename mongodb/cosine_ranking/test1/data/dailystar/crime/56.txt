@@ -1,5 +1,4 @@
-2016-09-24 00:00:00+06:00
-Hackers steal 500m Yahoo users' data
+Hackers steal 500m Yahoo users' data.
 Yahoo said Thursday a massive attack on its network in 2014 allowed hackers to steal data from half a billion users and may have been "state sponsored."
 
 Yahoo, which confirmed details of the breach months after reports of a major hack, said its investigation concluded that "certain user account information was stolen" and that the attack came from "what it believes is a state-sponsored actor."

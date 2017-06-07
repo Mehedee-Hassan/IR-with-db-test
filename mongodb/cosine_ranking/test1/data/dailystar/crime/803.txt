@@ -1,5 +1,4 @@
-None
-Amazon resists Echo murder evidence call
+Amazon resists Echo murder evidence call.
 Amazon refused to share data captured by one of its Echo speakers.--BBC photo
 
 Amazon is continuing to resist efforts by prosecutors in a US murder case to obtain recordings from one of its Echo smart speakers.
@@ -20,11 +19,11 @@ According to court records, one of the deceased's eyes and his lips appeared to 
 
 Detectives said they learned that music had been streamed to the back patio at the time of death, which they said may have been controlled via the Echo's smart assistant Alexa.
 
-Lawyers for Amazon filed a motion last week asking a judge to throw out requests for Echo data to be handed over: ‘Given the important First Amendment and privacy implications at stake, the warrant should be quashed unless the Court finds that the State has met its heightened burden for compelled production of such materials,’ its court filings read.
+Lawyers for Amazon filed a motion last week asking a judge to throw out requests for Echo data to be handed over: â€˜Given the important First Amendment and privacy implications at stake, the warrant should be quashed unless the Court finds that the State has met its heightened burden for compelled production of such materials,â€™ its court filings read.
 
-And, in a statement to Associated Press, the firm added ‘Amazon will not release customer information without a valid and binding legal demand properly served on us. Amazon objects to overbroad or otherwise inappropriate demands as a matter of course,’ the company said in a statement.
+And, in a statement to Associated Press, the firm added â€˜Amazon will not release customer information without a valid and binding legal demand properly served on us. Amazon objects to overbroad or otherwise inappropriate demands as a matter of course,â€™ the company said in a statement.
 
-The ‘always on’ Echo speaker makes recordings of audio it hears from a fraction of a second before it detects a wake word - either Alexa or Amazon - until it judges the command to be over.
+The â€˜always onâ€™ Echo speaker makes recordings of audio it hears from a fraction of a second before it detects a wake word - either Alexa or Amazon - until it judges the command to be over.
 
 This audio is then transmitted to Amazon's computer servers, which interpret the request and tell it how to respond.
 

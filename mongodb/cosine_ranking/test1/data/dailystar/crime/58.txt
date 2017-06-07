@@ -1,5 +1,4 @@
-2016-03-10 00:00:00+06:00
-Hackers' bid to steal $870m more foiled
+Hackers' bid to steal $870m more foiled.
 The hackers who stole Bangladesh Bank's money were on their way to pull off a heist of about $1 billion, but the banking system responded in time to stop the transfer of $870 million from the central bank's account with the New York Federal Reserve Bank.
 
 The cyber thieves planned to wire their loot through the Philippines and Sri Lanka.
@@ -18,31 +17,31 @@ The funds were transferred to a foreign exchange broker for conversion into peso
 
 Soon after the funds were released, RCBC received a message through the SWIFT system, commonly used by banks for international transactions, recalling the $81 million and ordering a stop to another $870 million that was on the way.
 
-ìThe American bank contacted us when they got their anti-money laundering alert to confirm if the pay order actually came from us. We straightaway replied in the negative, so the payment was stopped,î Subhankar Saha, spokesperson for the BB, told The Daily Star.
+‚ÄúThe American bank contacted us when they got their anti-money laundering alert to confirm if the pay order actually came from us. We straightaway replied in the negative, so the payment was stopped,‚Äù Subhankar Saha, spokesperson for the BB, told The Daily Star.
 
 But by then, the Chinese-Filipino businessman had moved the funds to three casinos, where they were converted into chips for betting at the gaming tables, according to the Philippine Daily Inquirer.
 
 The chips were then converted back into cash and remitted to accounts in Hong Kong soon after by him.
 
-The Inquirer learned that top officials of RCBC were ìaware of the transactions at every stage, from the very beginning to the endî.
+The Inquirer learned that top officials of RCBC were ‚Äúaware of the transactions at every stage, from the very beginning to the end‚Äù.
 
 The manager of the branch where the transactions took place told the Inquirer through a representative that she was ordered by top RCBC officials in May last year to open the five accounts.
 
-The fact of the matter is, the branch manager was ordered by the higher-ups to facilitate the transactions, said her representative. ìYou can't do anything this big without the higher-ups not knowing.î
+The fact of the matter is, the branch manager was ordered by the higher-ups to facilitate the transactions, said her representative. ‚ÄúYou can't do anything this big without the higher-ups not knowing.‚Äù
 
 She has now been suspended as part of the bank's internal investigations.
 
-Her representative said she is now afraid that she will be included in the Filipino central bank's ìorange listî of bankers found to have committed violations of important banking regulations, such as the know-your-customer rule under the Anti-Money Laundering Act.
+Her representative said she is now afraid that she will be included in the Filipino central bank's ‚Äúorange list‚Äù of bankers found to have committed violations of important banking regulations, such as the know-your-customer rule under the Anti-Money Laundering Act.
 
 The committee on accountability of public officers and investigation of the Senate of the Philippines is scheduled to hold a public hearing on the matter on March 14.
 
-The branch manager is willing to testify, her representative told the Inquirer. ìShe is clear that she did not violate any banking or anti-money laundering laws.î he added.
+The branch manager is willing to testify, her representative told the Inquirer. ‚ÄúShe is clear that she did not violate any banking or anti-money laundering laws.‚Äù he added.
 
 Besides the Senate, the National Bureau of Investigation and state-owned Philippine Amusement and Gaming Corp. (Pagcor) are conducting their own probes into the money laundering incident.
 
 Pagcor operates its own casinos and gives licences to a few private firms to run those.
 
-ìYes, the casinos were part of the chain to transactions in this [suspected] laundering case, but there were several layers in the banking system before that, which should have detected these suspicious funds and stopped them,î a Filipino government official told the Inquirer.
+‚ÄúYes, the casinos were part of the chain to transactions in this [suspected] laundering case, but there were several layers in the banking system before that, which should have detected these suspicious funds and stopped them,‚Äù a Filipino government official told the Inquirer.
 
 The system failed in this instance, he said.
 

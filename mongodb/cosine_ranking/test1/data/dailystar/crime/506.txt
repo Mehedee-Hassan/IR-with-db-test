@@ -1,5 +1,4 @@
-2011-03-18 00:00:00+06:00
-Bail forgery under scanner
+Bail forgery under scanner.
 The Supreme Court has moved to stop the lower courts being tricked into granting bail on forged High Court orders.
 
 The move follows allegations that a number of accused have obtained bail from trial courts by producing fake HC documents, said SC sources.

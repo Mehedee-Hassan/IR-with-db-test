@@ -1,5 +1,4 @@
-2014-02-23 00:05:00+06:00
-Hackers active
+Hackers active.
 Yet another scandal hits the state-owned Sonali Bank. This time, the bank has lost $250,000 (Tk 2 crore) to cyber-crooks, who allegedly hacked into the bank's security system and transferred the money to an account in Turkey.
 
 The crime was committed in September last year while Sonali Bank's corporate branch at Shilpa Bhaban was transferring the amount to the United Kingdom through wires on behalf of its client in Bangladesh. But the money was stolen by London-based hackers, who reportedly transferred it to Turkey.
@@ -12,15 +11,15 @@ Cyber criminals allegedly hacked into the bank's server and transferred $250,000
 
 Speaking at the conference, Finance Minister AMA Muhith slammed the bank for its poor internal control and risk management.
 
-“You have to strengthen the bank's internal control and manage its branches properly,” Muhith told the bank's top management.
+â€œYou have to strengthen the bank's internal control and manage its branches properly,â€ Muhith told the bank's top management.
 
 An official of the state-run bank was suspended for alleged involvement in the cyber-theft following a Bangladesh Bank probe.
 
-“We have identified the culprit [Sonali Bank official] and suspended him,” Pradip Kumar Dutta, managing director and CEO of Sonali Bank, told The Daily Star yesterday.
+â€œWe have identified the culprit [Sonali Bank official] and suspended him,â€ Pradip Kumar Dutta, managing director and CEO of Sonali Bank, told The Daily Star yesterday.
 
 Now, Sonali Bank is trying to retrieve the money with the help of Bangladesh Bank.
 
-“We have written to the central bank of Turkey, seeking help for getting back the money,” a senior Bangladesh Bank official told The Daily Star.
+â€œWe have written to the central bank of Turkey, seeking help for getting back the money,â€ a senior Bangladesh Bank official told The Daily Star.
 
 The latest incident once again exposed Sonali Bank's poor control and management for which it has lost business to private banks over the past two decades.
 
@@ -28,7 +27,7 @@ The state-run bank has given so many bad loans that its nonperforming loans (NPL
 
 Several information technology experts said hacking of SWIFT security system and password was not possible unless bank officials were involved in the cyber-theft.
 
-“The bank officials who transferred the money might have been involved in the theft. It was a fraud committed by insiders,” said the head of IT department at a private bank, asking not to be named.
+â€œThe bank officials who transferred the money might have been involved in the theft. It was a fraud committed by insiders,â€ said the head of IT department at a private bank, asking not to be named.
 
 Experts said registration of SWIFT Code is handled by the Belgium-based Society for Worldwide Interbank Financial Telecommunication (SWIFT).
 

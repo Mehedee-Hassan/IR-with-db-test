@@ -1,5 +1,4 @@
-2016-03-20 00:00:00+06:00
-Not so SWIFT
+Not so SWIFT.
 Two engineers of SWIFT have come to Bangladesh to review its servers with the central bank -- 38 days after a band of hackers breached the payment system in an attempt to steal about $1 billion.
 
 The Bangladesh Bank asked SWIFT Global to review its system in Bangladesh as soon as it found out about the security breach on February 7.

@@ -1,5 +1,4 @@
-2016-02-15 00:00:00+06:00
-BB orders tighter security for ATMs
+BB orders tighter security for ATMs.
 The central bank yesterday asked all banks to tighten security, including installing anti-skimming devices at their ATM booths, in a bid to crack down on rising card frauds.
 
 The move comes after fraudulent cash transactions were detected at six ATM booths of three banks on Friday.
@@ -26,7 +25,7 @@ Meanwhile, Eastern Bank Ltd issued a statement pledging full reimbursement of th
 
 The bank said it received complaints on Friday from some of its cardholders through their contact centre that their cards were being used at other banks' ATMs for cash withdrawals.
 
-ìAs soon as these unauthorised transactions were reported to us, we blocked the reported 21 cards. Moreover, to protect customers, we blocked all the cards that were used in the suspected two ATM booths in Gulshan area,î said Ziaul Karim, head of communication of EBL.
+‚ÄúAs soon as these unauthorised transactions were reported to us, we blocked the reported 21 cards. Moreover, to protect customers, we blocked all the cards that were used in the suspected two ATM booths in Gulshan area,‚Äù said Ziaul Karim, head of communication of EBL.
 
 The bank said fraudsters copied cardholders' data by using skimming devices.
 
@@ -34,13 +33,13 @@ EBL claimed that it has anti-skimming devices at all of its ATM booths.
 
 Kazi Saifuddin Munir, managing director of IT Consultants Ltd that owns Q-Cash, the country's biggest payment processing consortium, said the incidents that took place on Friday were not the first ATM frauds in Bangladesh.
 
-ìOften, banks do not report the fraudulence. As the banks are now connected to the national payment switch, the issue has come to the knowledge of the central bank and the public as well.î
+‚ÄúOften, banks do not report the fraudulence. As the banks are now connected to the national payment switch, the issue has come to the knowledge of the central bank and the public as well.‚Äù
 
 He said these frauds are happening mostly due to banks' negligence.
 
 There is nothing wrong with the central bank's NPS platform, Munir said, adding that the banks should take measures to protect their customers' PINs.
 
-ìThough anti-skimming devices are available in the country, many banks are yet to install those, making their clients vulnerable to frauds.î
+‚ÄúThough anti-skimming devices are available in the country, many banks are yet to install those, making their clients vulnerable to frauds.‚Äù
 
 Q-Cash has 43 banks and financial institutions as its clients, meaning that cardholders of these banks can use Q-Cash ATM booths for transactions.
 

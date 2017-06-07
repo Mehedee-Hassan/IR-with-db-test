@@ -1,12 +1,11 @@
-2016-03-05 00:00:00+06:00
-Probe finds more ATM fraud cases
+Probe finds more ATM fraud cases.
 Fraudsters might actually have stolen over Tk 1 crore -- four times the amount initially thought -- from ATM booths of several banks using cloned cards last month, the central bank and investigators say.
 
 Only three banks were previously said to have been hit by the fraudulence between February 6 and 12. They are City Bank, Eastern Bank (EBL) and United Commercial Bank (UCB). But it is now understood that more banks have been affected.
 
 The latest addition to the list is Premier Bank, from where a gang pocketed Tk 40 lakh by cloning credit cards issued by Al Rajhi Bank of Saudi Arabia, sources said.
 
-ìThere are more banks that have fallen victim to the recent card frauds,î Shubhankar Saha, executive director and spokesman for Bangladesh Bank, told The Daily Star on Thursday.
+‚ÄúThere are more banks that have fallen victim to the recent card frauds,‚Äù Shubhankar Saha, executive director and spokesman for Bangladesh Bank, told The Daily Star on Thursday.
 
 He declined to give the number or names of the affected banks, citing the ongoing investigation by the central bank.
 
@@ -22,11 +21,11 @@ The cards were used on last Saturday and Sunday, said Khondker Fazle Rashid, man
 
 With the latest detection, the amount stolen so far stands at Tk 65 lakh. But it would go up once the BB gets information from all the banks hit by the trickery, said the BB executive director.
 
-Another BB official fears the same. ìWe don't know exactly how many cards have been cloned by the gang. These cards could be used later inside and outside the country,î said the official.
+Another BB official fears the same. ‚ÄúWe don't know exactly how many cards have been cloned by the gang. These cards could be used later inside and outside the country,‚Äù said the official.
 
-ìWe don't know whether these cloned cards have already been used in foreign countries,î he added, asking not to be named.
+‚ÄúWe don't know whether these cloned cards have already been used in foreign countries,‚Äù he added, asking not to be named.
 
-ìAlong with local cards, foreign cards were also used in ATMs that were skimmed off recently. After cloning these cards, fraudsters will use international cards in foreign countries,î said Kazi Saifuddin Munir, managing director of IT Consultants that runs Q Cash, an electronic payment switch.
+‚ÄúAlong with local cards, foreign cards were also used in ATMs that were skimmed off recently. After cloning these cards, fraudsters will use international cards in foreign countries,‚Äù said Kazi Saifuddin Munir, managing director of IT Consultants that runs Q Cash, an electronic payment switch.
 
 For years, skimming has been a popular technique used by fraudsters across the world. They steal data from the card's magnetic stripe with a device hidden near the ATMs' card slots.
 

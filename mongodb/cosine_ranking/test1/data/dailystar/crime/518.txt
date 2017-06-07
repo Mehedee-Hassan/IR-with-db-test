@@ -1,5 +1,4 @@
-2016-08-16 00:00:00+06:00
-Passport forgery
+Passport forgery.
 The experience of a woman, who found when trying to collect her machine readable passport that someone else had fraudulently had one made with the same number, is frightening. Alarmingly, the authorities were in the dark for almost two years until the victim, upon returning to the country from abroad went to collect her MRP, and uncovered the fraudulence.
 
 This only exposes the systemic and security flaws in the passport issuance system. And what this also shows is the lack of periodic assessment of the system to check the competence of its workings.

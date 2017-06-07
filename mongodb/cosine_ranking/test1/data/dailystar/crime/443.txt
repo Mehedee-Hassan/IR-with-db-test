@@ -1,10 +1,9 @@
-2016-02-25 00:00:00+06:00
-'More money stolen at point-of-sale'
+'More money stolen at point-of-sale'.
 Foreign fraudsters in collaboration with local bankers and merchants are believed to have committed more card frauds on point-of-sale (POS) terminals than what they had done with ATMs, experts and investigators said.
 
 The issue came to the front after police arrested the City Bank's three officials who had been working with the bank's POS terminals at different merchants.
 
-ìIf the bank officials concerned get involved with merchants, it is very easy to do card frauds at POS terminals,î said Mashrur Arefin, additional managing director of the City Bank.
+‚ÄúIf the bank officials concerned get involved with merchants, it is very easy to do card frauds at POS terminals,‚Äù said Mashrur Arefin, additional managing director of the City Bank.
 
 Arefin was surprised to see that his bank's three junior officers, who were the supervisors of the bank's POS acquiring team, collaborated with an international gang of card frauds.
 
@@ -20,7 +19,7 @@ Bankers said as a side income, merchants also swipe cards and then provide cash 
 
 Generally, foreigners use their cards to buy goods and services. Fraudsters steal data of these cards in collaboration with the merchants from where foreigners had bought their goods or services, said Abul Kashem Mohammad Shirin, deputy managing director of Dutch-Bangla Bank.
 
-ìThe POS terminals are vulnerable because these are not EMV-equipped,î he said.
+‚ÄúThe POS terminals are vulnerable because these are not EMV-equipped,‚Äù he said.
 
 EMV, which stands for Europay, MasterCard, and Visa, is a global standard for inter-operation of integrated chip cards which are used at POS terminals and ATMs for authenticating credit and debit card transactions.
 
@@ -34,7 +33,7 @@ The gang used data skimmed off cards at four ATMs in the capital and the central
 
 But investigators found Thomas (aka Piotr) and his accomplices committed far more frauds at POS terminals than at ATMs.
 
-ìThe use of clone cards at merchants is on the rise. Foreign cards that are used for buying goods or services are very vulnerable to frauds,î said Kazi Saifuddin Munir, managing director of IT Consultants that run Q-Cash, the largest private payment switch in Bangladesh.
+‚ÄúThe use of clone cards at merchants is on the rise. Foreign cards that are used for buying goods or services are very vulnerable to frauds,‚Äù said Kazi Saifuddin Munir, managing director of IT Consultants that run Q-Cash, the largest private payment switch in Bangladesh.
 
 Compromise between merchants and bankers make the frauds easier, he said.
 

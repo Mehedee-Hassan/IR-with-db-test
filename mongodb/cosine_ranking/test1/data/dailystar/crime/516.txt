@@ -1,5 +1,4 @@
-2007-08-31 00:00:00+06:00
-Forgery in CSB's frequency allocation
+Forgery in CSB's frequency allocation.
 A probe body of the information ministry has recommended that the government cancel the frequency allocation to the Focus Multimedia Company, which runs CSB News satellite TV channel, for 'forgery'.
 
 The five-member probe body headed by the ministry's Joint Secretary (development) Kamal Uddin found that the CSB News got the frequency allocation by submitting a fake application two days before submitting the original one to the information ministry on October 19, 2006.

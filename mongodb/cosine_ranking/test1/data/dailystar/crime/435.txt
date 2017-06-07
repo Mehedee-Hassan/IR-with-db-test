@@ -1,5 +1,4 @@
-2017-04-15 10:21:11+06:00
-Could enable fraud like seen at Bangladesh Bank: Cybersecurity expert
+Could enable fraud like seen at Bangladesh Bank: Cybersecurity expert.
 Hackers yesterday released documents and files that cybersecurity experts indicated the US National Security Agency (NSA) had accessed the SWIFT interbank messaging system, allowing it to monitor money flows among some Middle Eastern and Latin American banks.
 
 The release included computer code that could be adapted by criminals to break into SWIFT servers and monitor messaging activity, said Shane Shook, a cybersecurity consultant who has helped banks investigate breaches of their SWIFT systems.
@@ -40,15 +39,15 @@ When cyberthieves robbed the Bangladesh Bank last year, they compromised that ba
 
 The documents released by the Shadow Brokers on Friday indicate that the NSA may have accessed the SWIFT network through service bureaus. SWIFT service bureaus are companies that provide an access point to the SWIFT system for the network's smaller clients and may send or receive messages regarding money transfers on their behalf.
 
-ìIf you hack the service bureau, it means that you also have access to all of their clients, all of the banks," said Matt Suiche, founder of the United Arab Emirates-based cybersecurity firm Comae Technologies, who has studied the Shadow Broker releases and believes the group has access to NSA files.
+‚ÄúIf you hack the service bureau, it means that you also have access to all of their clients, all of the banks," said Matt Suiche, founder of the United Arab Emirates-based cybersecurity firm Comae Technologies, who has studied the Shadow Broker releases and believes the group has access to NSA files.
 
 The documents posted by the Shadow Brokers include Excel files listing computers on a service bureau network, user names, passwords and other data, Suiche said.
 
-ìThat's information you can only get if you compromise the system," he said.
+‚ÄúThat's information you can only get if you compromise the system," he said.
 
 Attempt to monitor flow of money
 
-Cris Thomas, a prominent security researcher with the cybersecurity firm Tenable, said the documents and files released by the Shadow Brokers show ìthe NSA has been able to compromise SWIFT banking systems, presumably as a way to monitor, if not disrupt, financial transactions to terrorists groupsî.
+Cris Thomas, a prominent security researcher with the cybersecurity firm Tenable, said the documents and files released by the Shadow Brokers show ‚Äúthe NSA has been able to compromise SWIFT banking systems, presumably as a way to monitor, if not disrupt, financial transactions to terrorists groups‚Äù.
 
 Since the early 1990s, interrupting the flow of money from Saudi Arabia, the United Arab Emirates and elsewhere to al Qaeda, the Taliban, and other militant Islamic groups in Afghanistan, Pakistan and other countries has been a major objective of US and allied intelligence agencies.
 

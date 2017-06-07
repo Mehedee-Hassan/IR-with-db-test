@@ -1,12 +1,11 @@
-2016-03-03 00:00:00+06:00
-Another ATM fraud
+Another ATM fraud.
 Criminals are now using international credit cards issued by foreign banks to steal money.
 
 This was revealed after Premier Bank on Monday informed Bangladesh Bank that fraudsters pocketed around Tk 40 lakh from four of Premier Bank's ATMs by using five cloned credit cards of Saudi Arabia's Al Rajhi Bank on Saturday and Sunday, according to a top official of Premier Bank.
 
 Fraudsters could not use two more cards as those got stuck in the machines, he said.
 
-“They [fraudsters] were successful in using five cards to withdraw nearly Tk 40 lakh. All those cards were of the clients of Saudi Arabia's Al Rajhi Bank,” Khandkar Fazle Rashid, managing director of Premier Bank, told The Daily Star.
+â€œThey [fraudsters] were successful in using five cards to withdraw nearly Tk 40 lakh. All those cards were of the clients of Saudi Arabia's Al Rajhi Bank,â€ Khandkar Fazle Rashid, managing director of Premier Bank, told The Daily Star.
 
 Premier Bank filed a case with Banani Police Station in this regard on Tuesday.
 
@@ -18,11 +17,11 @@ They were able to use 40 cloned cards to withdraw around Tk 25 lakh before it wa
 
 But in the latest case, all five cards used in the ATMs of Premier Bank were issued by Al Rajhi Bank.
 
-“Data of these cards were skimmed off and cloned in Saudi Arabia and criminals used those to withdraw money from ATMs of Premier Bank here,” Shubhankar Saha, executive director and spokesman of the central bank, told The Daily Star yesterday.
+â€œData of these cards were skimmed off and cloned in Saudi Arabia and criminals used those to withdraw money from ATMs of Premier Bank here,â€ Shubhankar Saha, executive director and spokesman of the central bank, told The Daily Star yesterday.
 
 But industry insiders disagreed with Saha on the issue saying that the latest incident may be a result of the recent skimmed off data of a huge number of cards.
 
-“Of these copied cards, may be, some were used by the Bangladeshi expatriates in Saudi Arabia or Saudi nationals visiting Bangladesh at that time,” said Kazi Saifuddin Munir, managing director of IT Consultants Limited that runs the country's largest payments switch, Q Cash.
+â€œOf these copied cards, may be, some were used by the Bangladeshi expatriates in Saudi Arabia or Saudi nationals visiting Bangladesh at that time,â€ said Kazi Saifuddin Munir, managing director of IT Consultants Limited that runs the country's largest payments switch, Q Cash.
 
 The ATM frauds that took place between February 6 and February 12 created a huge hue and cry in the country as such incidents were first of its kind in Bangladesh.
 
