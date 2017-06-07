@@ -30,6 +30,7 @@ def rankDocuments(index, words ,numberOfDocuments):
     # document that has terms in query
     doclist = {}
 
+    numofdoc = set()
 
 
     rankings = {}
@@ -38,14 +39,14 @@ def rankDocuments(index, words ,numberOfDocuments):
     for word in words:
 
 
-
-
         if word in index:
             #
             # print(index[word])
             # continue
 
             for document in index[word]['document(s)'].keys():
+
+                numofdoc.add(document)
 
                 # Term Frequency (log to reduce document size scale effect)
                 TF = index[word]['document(s)'][document]['frequency']
@@ -82,7 +83,7 @@ def rankDocuments(index, words ,numberOfDocuments):
                 doclist[doc_id].append((word ,tfidf))
 
 
-
+    print("number of doc = ",len(numofdoc))
 
     ranklist = normalizedVector(doclist,queryTfVector)
 

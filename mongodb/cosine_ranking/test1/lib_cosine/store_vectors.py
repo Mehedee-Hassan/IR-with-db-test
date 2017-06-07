@@ -147,7 +147,7 @@ def saveNormalization():
  # save normalized vector for each document's words
 
 
-# TFVectorForDoc()
+TFVectorForDoc()
 
 # save normalized vector for each document's words
 saveNormalization()

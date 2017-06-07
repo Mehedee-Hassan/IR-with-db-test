@@ -18,7 +18,7 @@ document_col_name = CN.documentCollectionName()
 
 
 
-frenchStopWords = stopwords.words('english')
+englishStopWords = stopwords.words('english')
 p = re.compile('\w+')
 
 def clean(data):
@@ -29,9 +29,9 @@ def clean(data):
     # Lower case
     words = [word.lower() for word in words]
     # Stem word
-    words = [fs().stemWord(word) for word in words]
+    # words = [fs().stemWord(word) for word in words]
     # Remove stop words
-    words = [word for word in words if word not in frenchStopWords]
+    words = [word for word in words if word not in englishStopWords]
     # Done!
     return words
 
