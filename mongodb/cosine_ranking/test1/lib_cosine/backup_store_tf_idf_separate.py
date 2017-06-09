@@ -44,21 +44,16 @@ def TFVectorForDoc():
 
     cursor = db[index_col_name].find()
     db[tfvectDoc_col_name].count()
-    total_doc = db[document_col_name].count()
 
-    print("total== ",total_doc)
     print(cursor)
     docs = {}
     print("here")
+    for document in cursor:
+        d = document['info']['document(s)']
+        d2 = list(document['info']['document(s)'].keys())
 
-
-    for word_index in cursor:
-        d = word_index['info']['document(s)']
-        d2 = list(word_index['info']['document(s)'].keys())
-
-        print('_')
         for doc_id_as_key in d2:
-            print('+')
+
 
             #  if document exists in tf_doc_vector
 
@@ -68,23 +63,13 @@ def TFVectorForDoc():
 
                 # insert in to tfdocvector
 
-                tempTf = d[doc_id_as_key]['frequency']
 
-                if tempTf > 0:
-                    tempTf = 1 + math.log(tempTf, 10)
-                else:
-                    tempTf = 0
 
-                tempDF = word_index['info']['document frequency']
-                tempIDF = total_doc / tempDF
-                tempIDF = math.log(tempIDF, 10)
-
-                tfidf =  ( tempTf*tempIDF )
-
-                print ("tf",tempTf ,"id - ",tempDF," idf =",tempIDF)
                 db[tfvectDoc_col_name].insert_one({
                     '_id': doc_id_as_key,
-                    '_tf': {word_index['_id']:tfidf}
+                    '_tf': {document['_id']:d[doc_id_as_key]['frequency']},
+                    '_df': {document['_id']:document[document['_id']]['document frequency']}
+
                 })
 
 
@@ -96,33 +81,17 @@ def TFVectorForDoc():
                     tf_list = ((db[tfvectDoc_col_name].find_one({'_id': doc_id_as_key})))
 
                     tf_list = (tf_list['_tf'])
-
-                    tempTf = d[doc_id_as_key]['frequency']
-
-                    if tempTf > 0 :
-                        tempTf = 1 + math.log(tempTf, 10)
-                    else:
-                        tempTf = 0
-
-
-                    tempDF = word_index['info']['document frequency']
-                    tempIDF = total_doc / tempDF
-                    tempIDF = math.log(tempIDF, 10)
-
-                    tfidf = (tempTf * tempIDF)
-
-                    # append new object to old one
-
-
-                    tf_list[word_index['_id']] = tfidf
+                    df_list = (tf_list['_df'])
                     # pprint(tf_list)
+                    # append new object to old one
+                    tf_list[document['_id']] = d[doc_id_as_key]['frequency']
+                    df_list[document['_id']] = document[document['_id']]['document frequency']
 
 
 
                     # pprint(tf_list)
 
                     # update collection
-                    print("tf", tempTf, "id - ", tempDF, " idf =", tempIDF)
 
                     db[tfvectDoc_col_name].update_one(
                         {'_id': doc_id_as_key},
@@ -130,6 +99,13 @@ def TFVectorForDoc():
                             "$set": {
                                 '_tf': tf_list
                             }
+                        },
+                        {
+
+                            "$set": {
+                                '_df': df_list
+                            }
+
                         }
                     )
 
@@ -142,18 +118,28 @@ def TFVectorForDoc():
 
 
 def saveNormalization():
+
     data = db[tfvectDoc_col_name].find()
+    total_doc = db[tfvectDoc_col_name].count()
 
     for element in data:
 
         pprint(element)
         sumtf = 0
-        for tf in element['_tf'].items():
 
-            # pprint(tf)
-            # pprint(tf[1])
+        temp_tf_idf = {}
+        for key ,val in element['_tf'].items():
 
-            sumtf += (tf[1]*tf[1])
+            temp_tf_idf[key] = tf[1] * math.log((element['_df'][key]/total_doc),10)
+            sumtf += (temp_tf_idf[key]*temp_tf_idf[key])
+
+
+        # for tf in element['_tf'].items():
+        #
+        #     # pprint(tf)
+        #     # pprint(tf[1])
+        #
+        #     sumtf += (tf[1]*tf[1])
 
 
         print(sumtf)
@@ -163,10 +149,18 @@ def saveNormalization():
 
         normlist = {}
 
-        for tf in element['_tf'].items():
+        # for tf in element['_tf'].items():
+        #
+        #     tempNorm = (tf[1])/sq
+        #     normlist[tf[0]] = round(tempNorm,4)
 
-            tempNorm = tf[1]/sq
-            normlist[tf[0]] = round(tempNorm,4)
+        for key,val in element['_tf'].items():
+
+            tempNorm = (temp_tf_idf[key])/sq
+
+            normlist[temp_tf_idf[key]] = round(tempNorm,4)
+
+
 
         try:
 

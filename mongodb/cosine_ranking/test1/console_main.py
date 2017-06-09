@@ -13,6 +13,7 @@ from pprint import  pprint
 from pymongo import MongoClient
 import querying_cosine as qur
 from bson.objectid import ObjectId
+import k_means
 
 
 
@@ -24,6 +25,7 @@ client = MongoClient()
 db = CN.getDatabase(client)
 index_col_name = CN.indexCollectionName()
 document_col_name = CN.documentCollectionName()
+tfvectDoc_col_name = CN.tfvCollectionName()
 
 
 # ==============================
@@ -33,6 +35,9 @@ document_col_name = CN.documentCollectionName()
 
 indexCollection = db[index_col_name]
 documentCollection = db[document_col_name]
+
+tf_docVector = db[tfvectDoc_col_name]
+
 
 class browser():
     def __init__(self, parent=None):
@@ -45,6 +50,8 @@ class browser():
         text = input("search:")
 
         words = qur.cleanQuery(text)
+        # words = set(words)
+
 
         print(words)
         # Collect the information for each word of the query
@@ -55,20 +62,24 @@ class browser():
             try:
 
                 index[word] = indexCollection.find({'_id': word})[0]['info']
-                print(index[word])
+                # print(index[word])
 
             except :
                 print("not found")
 
 
+        print('intex len =' ,tf_docVector.count())
+
         # Rank the documents according to the query
-        results = qur.rankDocuments(index, words, indexCollection.count())
+        results = qur.rankDocuments(index, words, db[document_col_name].count())
+
+
 
 
         tt = []
 
         for result in results:
-            print(str(result[0]) + ' : ' + str(round(result[1], 10)))
+            print(str(result[0]) + ' : ' + str(round(result[1], 3)))
 
             print("============================")
 
@@ -76,6 +87,14 @@ class browser():
 
             # pprint(test)
             print("============XXX=============")
+
+
+        doclist = [str(r[0]) for r in results]
+
+        print("list == ",doclist,'\n  length = ',len(doclist))
+
+        # if len(doclist)!=0:
+        #     k_means.k_means(doclist)
 
 
 

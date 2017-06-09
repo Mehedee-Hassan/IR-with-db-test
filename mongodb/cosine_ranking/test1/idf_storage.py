@@ -32,8 +32,9 @@ document_col_name = CN.documentCollectionName()
 
 
 # Indicate the path where relative to the collection
-# os.chdir(projectpath + '/data/dailystar/story/7murder')
-os.chdir(projectpath + '/data/dailystar/story/tonu_rape')
+# os.chdir(projectpath + '/data/dailystar/crime/')
+os.chdir(projectpath + '/data/dailystar/story/7murder')
+# os.chdir(projectpath + '/data/dailystar/story/tonu_rape')
 # D:\programming\python\search_engine_test\mongodb\cosine_ranking\test1\data\dailystar\story\7murder
 # os.chdir(projectpath + '/data_temp/')
 
@@ -50,14 +51,14 @@ for file in files:
     # Normalize the content
     words = parsing.clean(data)
     # Remove the extension from the file for storage
-    name = re.match('(^[^.]*)', file).group(0)
+    # name = re.match('(^[^.]*)', file).group(0)
 
 
     # store documents
     id = parsing.store_doc(document_col_name, temp_doc)
 
     # Add the words to the index
-    index = parsing.index(name, words, index,id)
+    parsing.make_term_index(words, index,id)
 
 
 

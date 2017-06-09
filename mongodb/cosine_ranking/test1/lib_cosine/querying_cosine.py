@@ -1,32 +1,63 @@
 from math import log, sqrt
-from snowballstemmer import FrenchStemmer as fs
+
+import nltk
+import snowballstemmer
 from nltk.corpus import stopwords
 import re
+from nltk.tokenize import RegexpTokenizer
+from pymongo import MongoClient
+
+import CommonNames as CN
+
+client = MongoClient()
+db = CN.getDatabase(client)
+index_col_name = CN.indexCollectionName()
+document_col_name = CN.documentCollectionName()
+
+
+# ==============================
+
+
 
 def cleanQuery(string):
 
-    # frenchStopWords = stopwords.words('english')
+    englishStopWords = stopwords.words('english')
 
     p = re.compile('\w+')
     words = p.findall(string)
     words = [word.lower() for word in words]
-    words = [fs().stemWord(word) for word in words]
-    # words = [word for word in words if word not in frenchStopWords]
+    engStem  =snowballstemmer.stemmer('english')
+
+    words = [engStem.stemWord(word) for word in words]
+    words = [word for word in words if word not in englishStopWords]
     return words
 
 
+def nltkTockenizer(string):
+    tokenizer = RegexpTokenizer(r'\w+')
+
+    tokens = tokenizer.tokenize(string)
+    tokens = [token.lower() for token in tokens]
+
+    engStem  =snowballstemmer.stemmer('english')
+    englishStopWords = stopwords.words('english')
+
+    tokens = [engStem.stemWord(token) for token in tokens]
+    tokens = [token for token in tokens if token not in englishStopWords]
 
 
+    return tokens
 
-def rankDocuments(index, words ,numberOfDocuments):
+
+def rankDocuments(index1, words ,numberOfDocuments):
     # We rank each document based on query
 
 
     queryTfVector = queryDocTFcalc(words)
 
     # unique terms
-    words = set(words)
-
+    # words = list(set(words))
+    print("***word = ",len(words))
     # document that has terms in query
     doclist = {}
 
@@ -36,26 +67,32 @@ def rankDocuments(index, words ,numberOfDocuments):
     rankings = {}
 
 
+
     for word in words:
 
+        try:
 
-        if word in index:
+            index = db[index_col_name].find({'_id': word})[0]['info']
+            # print(index[word])
+
+
+        # if word in index:
             #
             # print(index[word])
             # continue
 
-            for document in index[word]['document(s)'].keys():
+            for document_id in index['document(s)'].keys():
 
-                numofdoc.add(document)
+                numofdoc.add(document_id)
 
                 # Term Frequency (log to reduce document size scale effect)
-                TF = index[word]['document(s)'][document]['frequency']
-                DF = index[word]['document frequency']
-                doc_id = index[word]['document(s)'][document]['doc_id']
+                TF = index['document(s)'][document_id]['frequency']
+                DF = index['document frequency']
+                doc_id = index['document(s)'][document_id]['doc_id']
 
 
                 if TF > 0:
-                    TF = 1 + log(TF)
+                    TF = 1 + log(TF,10)
                 else:
                     TF = 0
 
@@ -67,20 +104,13 @@ def rankDocuments(index, words ,numberOfDocuments):
 
 
 
-                # Store scores in the ranking dictionary
-                if document not in rankings:
-                    rankings[document] = TF
+                if document_id not in doclist:
+                    doclist[document_id] = []
 
+                doclist[document_id].append((word ,tfidf))
 
-                    # document that this term
-
-                else:
-                    rankings[document] += TF
-
-                if doc_id not in doclist:
-                    doclist[doc_id] = []
-
-                doclist[doc_id].append((word ,tfidf))
+        except:
+            print("not found")
 
 
     print("number of doc = ",len(numofdoc))
@@ -90,7 +120,7 @@ def rankDocuments(index, words ,numberOfDocuments):
 
 
     # Order results according to the scores
-    rankings = list(reversed(sorted(rankings.items(), key=lambda x: x[1])))
+    # rankings = list(reversed(sorted(rankings.items(), key=lambda x: x[1])))
 
     ranklist = ((sorted(ranklist.items(), key=lambda x: x[1])))
 
@@ -127,8 +157,16 @@ def normalizedVector(doclist,queryTfVector):
 
             cosineValue += temp_vector[key] * queryTfVector[key]
 
-        ranking[id] = cosineValue
 
+        cosineValue = round(cosineValue,2)
+
+        if cosineValue > 0.09:
+
+            ranking[id] = cosineValue
+        else:
+            # print("cosine =" ,cosineValue," ",id)
+            test = 10
+            # del ranking[id]
 
     return ranking
 
@@ -154,9 +192,20 @@ def queryDocNorm(temp_vect):
     sum = 0
     for key ,value in temp_vect.items():
 
-        if value > 1:
+        if value > 0:
            value = 1+log(value,10)
 
+
+        DF = getDFby(key)
+        if DF == -1:
+            DF = 1
+
+        else:
+            DF = numberOfDocs() / DF
+            Df = log(DF,10)
+
+
+        tfidf = value*DF
 
 
         sum += value*value
@@ -172,5 +221,17 @@ def queryDocNorm(temp_vect):
     return tmp
 
 
+def numberOfDocs():
+    return db[document_col_name].count()
 
+def getDFby(word):
+    try:
+
+        df = db[index_col_name].find({'_id':word})
+        df = df['info']['document frequency']
+
+        return  df
+
+    except:
+        return -1
 
