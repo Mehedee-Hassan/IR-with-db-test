@@ -166,7 +166,7 @@ def saveNormalization():
         for tf in element['_tf'].items():
 
             tempNorm = tf[1]/sq
-            normlist[tf[0]] = round(tempNorm,4)
+            normlist[tf[0]] = (tempNorm)
 
         try:
 

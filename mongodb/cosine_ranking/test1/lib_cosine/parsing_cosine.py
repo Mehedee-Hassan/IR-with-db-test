@@ -1,6 +1,7 @@
 from pprint import pprint
 
 import snowballstemmer
+from nltk import RegexpTokenizer
 
 from nltk.corpus import stopwords
 import re
@@ -26,10 +27,15 @@ p = re.compile('\w+')
 
 def clean(data):
     # Concatenate the lines into a big string
-    words = [word for word in ' '.join(data).split(' ')]
+    # words = [word for word in ' '.join(data).split(' ')]
     # Search every word in the big string
-    words = p.findall(' '.join(words))
+    # words = p.findall(' '.join(words))
     # Lower case
+
+    tokenizer = RegexpTokenizer(r'\w+')
+
+    words = tokenizer.tokenize(data)
+
     words = [word.lower() for word in words]
     # Stem word
     englishStem = snowballstemmer.stemmer('english')
@@ -38,6 +44,32 @@ def clean(data):
     words = [word for word in words if word not in englishStopWords]
     # Done!
     return words
+
+
+def clean_lines(data):
+    # Concatenate the lines into a big string
+    # words = [word for word in ' '.join(data).split(' ')]
+    # Search every word in the big string
+    # words = p.findall(' '.join(words))
+    # Lower case
+    tokenizer = RegexpTokenizer(r'\w+')
+    # Stem word
+    englishStem = snowballstemmer.stemmer('english')
+    line_word = []
+
+    for d in data:
+
+        words = tokenizer.tokenize(d)
+        words = [word.lower() for word in words]
+        words = [englishStem.stemWord(word) for word in words]
+        # Remove stop words
+        words = [word for word in words if word not in englishStopWords]
+        line_word.extend(words)
+
+
+
+    # Done!
+    return line_word
 
 
 def index( words, index, id):
@@ -87,7 +119,7 @@ def make_term_index( words, index, id):
 
     doc_id = str(id)
 
-    print(words)
+    # print(words)
 
     for word in words:
 
@@ -95,7 +127,7 @@ def make_term_index( words, index, id):
 
         index_word = db[index_col_name].find_one({'_id':word})
 
-        pprint(db[index_col_name].find({'_id':word}).count())
+        # pprint(db[index_col_name].find({'_id':word}).count())
 
         if db[index_col_name].find({'_id':word}).count() <= 0:
 
@@ -122,7 +154,7 @@ def make_term_index( words, index, id):
             # If the word has not been found in this document
 
 
-            print(index_word)
+            # print(index_word)
             temp = (index_word['info']['document(s)'])
 
 
@@ -139,7 +171,6 @@ def make_term_index( words, index, id):
             # If the word has been found in this document
             else:
                 index_word['info']['document(s)'][doc_id]['frequency'] += 1
-
 
 
 

@@ -1,8 +1,10 @@
 
 import sys, os
 
+import snowballstemmer
 from bson import ObjectId
-
+from nltk import RegexpTokenizer
+from nltk.corpus import stopwords
 projectpath = os.path.dirname(os.path.realpath('idf_storage.py'))
 libpath = projectpath + '/lib_cosine'
 sys.path.append(libpath)
@@ -128,7 +130,7 @@ docs = ["593868345b65ad3bc89b9306",
 "5938682b5b65ad3bc89b923c",
 "593868595b65ad3bc89b960d",
 "593868595b65ad3bc89b9609"]
-dd = ['59393a0f5b65ad24b0883787', '59393a135b65ad24b08837f0', '59393a1a5b65ad24b0883876', '59393a235b65ad24b0883923', '59393a425b65ad24b0883b92', '59393a185b65ad24b0883861', '59393a415b65ad24b0883b8e', '59393a405b65ad24b0883b6e', '59393a105b65ad24b08837a3', '59393a425b65ad24b0883b90', '59393a115b65ad24b08837ae', '59393a1b5b65ad24b0883880', '59393a245b65ad24b088393a', '59393a415b65ad24b0883b8c', '59393a425b65ad24b0883b99', '59393a115b65ad24b08837be', '59393a415b65ad24b0883b8d', '59393a0f5b65ad24b088378d', '59393a425b65ad24b0883b91', '59393a0f5b65ad24b0883790', '59393a195b65ad24b088386b', '59393a415b65ad24b0883b8b', '59393a425b65ad24b0883b8f', '59393a165b65ad24b088381d', '59393a0e5b65ad24b088376b']
+dd = ['593aff055b65ad2020708dc4', '593aff105b65ad2020708de4', '593afd935b65ad2020708937', '593afdf55b65ad2020708a92', '593aff065b65ad2020708dc5', '593afefe5b65ad2020708db2', '593aff005b65ad2020708db8', '593aff015b65ad2020708dba', '593afe295b65ad2020708b2f', '593afec55b65ad2020708cfd', '593afec45b65ad2020708cfa', '593afec35b65ad2020708cf7', '593afec45b65ad2020708cf9', '593aff045b65ad2020708dc2', '593afec45b65ad2020708cfb', '593afef55b65ad2020708d96', '593afefd5b65ad2020708dae', '593afefd5b65ad2020708db0', '593afeb75b65ad2020708cd3', '593afec05b65ad2020708cf2', '593afec45b65ad2020708cf8', '593afec25b65ad2020708cf5', '593afec15b65ad2020708cf4', '593afec35b65ad2020708cf6', '593afec55b65ad2020708cfc', '593afef45b65ad2020708d92', '593afebf5b65ad2020708cf1', '593afec05b65ad2020708cf3', '593afebf5b65ad2020708cf0', '593afec55b65ad2020708cfe']
 for d in dd:
    t =  db.documents.find_one({'_id': ObjectId(d)})
 
@@ -144,4 +146,27 @@ for d in dd:
 
 
 
-
+# def nltkTockenizer(string):
+#     tokenizer = RegexpTokenizer(r'\w+')
+#
+#     tokens = tokenizer.tokenize(string)
+#     tokens = [token.lower() for token in tokens]
+#
+#     engStem  =snowballstemmer.stemmer('english')
+#     englishStopWords = stopwords.words('english')
+#
+#     tokens = [engStem.stemWord(token) for token in tokens]
+#     tokens = [token for token in tokens if token not in englishStopWords]
+#
+#
+#     return tokens
+#
+#
+# data = "this is a line" \
+#        "\n\n\nthis is another line" \
+#        "\nlakjsd ladjflk asjdflka jsdlfkjsalkdf jlskdj flksjd flkajsd flkja sdf" \
+#        "\nksldfjksdfjlksdf lsakdjf lakj 2j4398273 rswjenkjs r83u2 ewrn sh 1k2l31 '\sdfk jsldkfj"
+#
+# aa = nltkTockenizer(data)
+#
+# print(aa)

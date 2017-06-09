@@ -11,7 +11,7 @@ import CommonNames as CN
 
 from pprint import  pprint
 from pymongo import MongoClient
-import querying_cosine as qur
+import temp_query_cosine as qur
 from bson.objectid import ObjectId
 import k_means
 
@@ -79,7 +79,7 @@ class browser():
         tt = []
 
         for result in results:
-            print(str(result[0]) + ' : ' + str(round(result[1], 3)))
+            print(str(result[0]) + ' : ' + str((result[1])))
 
             print("============================")
 

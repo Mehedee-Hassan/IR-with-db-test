@@ -1,5 +1,6 @@
 from math import log, sqrt
 
+import math
 import nltk
 import snowballstemmer
 from nltk.corpus import stopwords
@@ -100,9 +101,9 @@ def rankDocuments(index1, words ,numberOfDocuments):
                 idf = numberOfDocuments / DF
                 idf = log(idf ,10)
 
-                tfidf = TF * idf
+                tfidf = TF #* idf
 
-
+                # todo : multiply idf
 
                 if document_id not in doclist:
                     doclist[document_id] = []
@@ -110,7 +111,7 @@ def rankDocuments(index1, words ,numberOfDocuments):
                 doclist[document_id].append((word ,tfidf))
 
         except:
-            print("not found")
+            print(word ," not found")
 
 
     print("number of doc = ",len(numofdoc))
@@ -158,7 +159,7 @@ def normalizedVector(doclist,queryTfVector):
             cosineValue += temp_vector[key] * queryTfVector[key]
 
 
-        cosineValue = round(cosineValue,2)
+        cosineValue = round(cosineValue,4)
 
         if cosineValue > 0.09:
 
@@ -202,13 +203,13 @@ def queryDocNorm(temp_vect):
 
         else:
             DF = numberOfDocs() / DF
-            Df = log(DF,10)
+            DF = math.log(DF,10)
 
 
         tfidf = value*DF
 
 
-        sum += value*value
+        sum += tfidf*tfidf
 
 
     sq = sqrt(sum)

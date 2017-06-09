@@ -32,8 +32,8 @@ document_col_name = CN.documentCollectionName()
 
 
 # Indicate the path where relative to the collection
-# os.chdir(projectpath + '/data/dailystar/crime/')
-os.chdir(projectpath + '/data/dailystar/story/7murder')
+os.chdir(projectpath + '/data/dailystar/crime/')
+# os.chdir(projectpath + '/data/dailystar/story/7murder')
 # os.chdir(projectpath + '/data/dailystar/story/tonu_rape')
 # D:\programming\python\search_engine_test\mongodb\cosine_ranking\test1\data\dailystar\story\7murder
 # os.chdir(projectpath + '/data_temp/')
@@ -43,19 +43,32 @@ os.chdir(projectpath + '/data/dailystar/story/7murder')
 # List all files in the collection
 files = [file for file in os.listdir('.') if os.path.isfile(file)]
 # Iterate through every file
+
+numoffiles = 0
 for file in files:
     # Split the file in lines
 
     temp_doc = open(file=file,mode='r',encoding="utf-8").read()
-    data = temp_doc.splitlines()
+
+
+    lines_string = (temp_doc.split('\n'))
+
+    string =''
+    for l in lines_string:
+        string = string +' '+l
+
+    numoffiles +=1
+    print("num = ",numoffiles,"lines = ")
+
+    # data = temp_doc.splitlines()
     # Normalize the content
-    words = parsing.clean(data)
+    words = parsing.clean_lines(lines_string)
     # Remove the extension from the file for storage
     # name = re.match('(^[^.]*)', file).group(0)
 
 
     # store documents
-    id = parsing.store_doc(document_col_name, temp_doc)
+    id = parsing.store_doc(document_col_name, string)
 
     # Add the words to the index
     parsing.make_term_index(words, index,id)
