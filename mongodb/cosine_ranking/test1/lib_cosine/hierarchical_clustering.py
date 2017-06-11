@@ -32,6 +32,48 @@ document_col_name = CN.documentCollectionName()
 
 
 # ==============================
+import queue
+
+
+clusters = {}
+
+def hierarchical(doc_list):
+    length = len(doc_list)
+
+    distance_dic = localDistance(doc_list)
+
+    pair_list = make_pair_init(distance_dic)
+
+
+
+    makeCluster_old(distance_dic, doc_list)
+
+
+
+
+def make_pair_init(distance_dic):
+
+    pq = queue.PriorityQueue()
+
+
+
+    for key,doc_dictionary in distance_dic:
+
+        for id_key,distance in doc_dictionary:
+
+            # first document id = key and id = document id_key
+            # val = cosine distance between two document
+            # NC = not a cluster
+            pq.put((distance , key ,id_key,'NC'))
+
+
+
+    return pq
+
+
+
+
+
 
 
 
@@ -53,14 +95,8 @@ def returnVect(documentID):
 
 
 
-def cosine_distance(doc1 ,doc2
-                    # avg_vect,avg_count_vect
-                    # ,vect1
-                    # ,vect2
-                    ,__emptyVect):
+def cosine_distance(doc1 ,doc2,__emptyVect):
 
-    vect1 = {}
-    vect2 = {}
 
 
 
@@ -77,10 +113,6 @@ def cosine_distance(doc1 ,doc2
         vect2 = doc2
 
 
-
-
-
-
     distance =0
     summationV = []
     # pprint(vect1)
@@ -91,167 +123,117 @@ def cosine_distance(doc1 ,doc2
         if __emptyVect == True:
             print('key = ',word," ",val)
 
-        # mean vector save
-        # if word not in avg_vect:
-        #     avg_vect[word] = 0
-        #     avg_count_vect[word] =0
-        #
-        #
-        # avg_vect[word] += val
-        # avg_count_vect[word] +=1
 
         if word in vect2:
-            # print('word = ',word ,"\n", vect2[word])
-
             sum_v += round((vect1[word]*vect2[word]),3)
-
-
 
     return sum_v
 
 
-def main():
 
-    avg_vect = {}
-    avg_count_vect = {}
-    distance = cosine_distance('5935b4b55b65ad41a0817765','5935b4b55b65ad41a0817767',
-    avg_vect,
-    avg_count_vect)
+def localDistance(doc_list):
+
+        distance = {}
+        lenght = len(doc_list)
+
+        for i in range(0,lenght):
+            for j in range(i+1 ,lenght):
+
+                if doc_list[i] not in distance:
+                    distance[doc_list[i]] = {}
+
+                if doc_list[j] not in distance:
+                    distance[doc_list[j]] = {}
+
+                print('now =',i,' ',j)
+
+                dist = cosine_distance(doc_list[i],doc_list[j],True)
+                distance[doc_list[i]][doc_list[j]]=dist
+                distance[doc_list[j]][doc_list[i]]=dist
 
 
-    # print (avg_vect)
-    # print ("distance = ",distance)
-
-# main()
 
 
+        for key ,val in distance.items():
+            distance[key] = ((sorted(val.items(), key=lambda x: x[1],reverse=True)))
 
 
-ClusterA = 1
-ClusterB = 2
 
 
-def k_means(document_list):
-    first_mean = document_list[0]
-    second_mean = document_list[len(document_list)-1]
+        pprint(distance)
 
+        return distance
+
+
+
+# old unfinished make cluster
+
+
+def makeCluster_old(distance, doc_list):
+
+    max = 0.0
+
+    temp_dict = {}
+    taken = {}
     cluster = {}
+    cls = 0
+    lenght = len(doc_list)
+    now  = {}
 
-    avg_vect = {}
-    avg_count_vect = {}
+    cl = []
 
-    __emptyVect = True
+    for i in range(0, lenght):
 
-    meanA={}
-    meanB={}
+        if cls not in cluster:
+            cluster[cls] = {}
+        if doc_list[i] in taken:
+            taken[doc_list[i]] = {}
 
 
-    oldA = {}
-    oldB = {}
-    oldCluster = {}
+        cluster[cls][doc_list[i]] = 2
+        taken[doc_list[i]][cls]  = 2
 
+        now[doc_list[i]] = cls
+
+        cl.append(cls)
+        cls+=1
+
+
+    b = 0
     while True:
 
-        for doc in document_list:
+        for i in range(0, lenght):
+
+           if i != lenght-1 and cl[i]!=cl[i+1]:
+
+               key = distance[doc_list[i]].keys()
+
+               for k in key:
+                   if cl[doc_list[i]] != cl[k]:
+
+                       dist_key = list(distance.keys())[0]
+
+                       if k == dist_key:
+                           now[dist_key] = now[doc_list[i]]
+
+                       else:
 
 
-            distance1 = cosine_distance(doc , first_mean
-
-                                        ,__emptyVect)
-
-            distance2 = cosine_distance(doc , second_mean
-
-                                        ,__emptyVect)
-
-            if distance1 > distance2:
-                cluster[doc] = ClusterA
-            else:
-                cluster[doc] = ClusterB
+               print(key[0]," ", list(distance.keys())[0])
 
 
-            first_mean ,second_mean = avg_vector(cluster)
 
-            __emptyVect = False
 
-        _changeFlag = cluserChanged(cluster,oldCluster)
+           print('now =', i, ' ', j)
 
-        if _changeFlag == False:
+
+        b += 1
+        if b > 1000:
             break
 
 
-        oldCluster = cluster
-
-
-
-
-    for key,val in cluster.items():
-        print("doc = ",key,'cluster= ',val)
-
-
-
-
-def cluserChanged(cluster,oldCluster):
-
-    if len(oldCluster) <=0:
-        return True
-
-    for key,val in cluster.items():
-        if cluster[key] != oldCluster[key]:
-            return True
-
-
-    return False
 
 
 
 
 
-
-
-def avg_vector(cluser):
-
-    meanCluserA = {}
-    meanCluserACnt = {}
-
-    meanCluserB = {}
-    meanCluserBCnt = {}
-
-
-    print("k means 1 " ,"cluster = ",cluser)
-
-    for key ,val in cluser.items():
-
-        if val  == ClusterA:
-            word_vector = returnVect(key)
-
-            for word ,tfnorm in word_vector.items():
-
-                if word not in meanCluserA:
-                    meanCluserA[word] = 0
-                    meanCluserACnt[word] = 0
-
-                # print("k_means2" , word ," transform",tfnorm)
-
-                meanCluserA[word] += float(tfnorm)
-                meanCluserACnt[word] += 1
-
-        if val  == ClusterB:
-            word_vector = returnVect(key)
-
-            for word ,tfnorm in word_vector.items():
-
-                if word not in meanCluserB:
-                    meanCluserB[word] = 0
-                    meanCluserBCnt[word] = 0
-
-                meanCluserB[word] += tfnorm
-                meanCluserBCnt[word] += 1
-
-
-        for key ,val in meanCluserA.items():
-            meanCluserA[key] = round((meanCluserA[key] / meanCluserACnt[key]),3)
-
-        for key ,val in meanCluserB.items():
-            meanCluserB[key] = round((meanCluserB[key] / meanCluserBCnt[key]),3)
-
-    return meanCluserA,meanCluserB
