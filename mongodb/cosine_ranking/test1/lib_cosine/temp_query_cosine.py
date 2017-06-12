@@ -94,7 +94,10 @@ def rankDocuments(index1, words, numberOfDocuments):
     for document in tfidf_ofDocuments_list:
         dbDocVector  =  computeVector(document['_id'])
 
-        ranking[document['_id']] = cosineDistance(dbDocVector , queryTfVector)
+        tempDistance = cosineDistance(dbDocVector , queryTfVector)
+
+        if tempDistance > float(0.1):
+            ranking[document['_id']] = tempDistance
 
 
 

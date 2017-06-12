@@ -114,13 +114,12 @@ def main():
 
     avg_vect = {}
     avg_count_vect = {}
-    distance = cosine_distance('5935b4b55b65ad41a0817765','5935b4b55b65ad41a0817767',
-    avg_vect,
-    avg_count_vect)
+    distance = cosine_distance('593afec55b65ad2020708cfe','593afec55b65ad2020708cfe',
+    True)
 
 
     # print (avg_vect)
-    # print ("distance = ",distance)
+    print ("distance = ",distance)
 
 # main()
 
@@ -132,10 +131,16 @@ ClusterB = 2
 
 
 def k_means(document_list):
+
+    l = len(document_list)-1
+
+    l2= int(l/2)
+
     first_mean = document_list[0]
-    second_mean = document_list[len(document_list)-1]
+    second_mean = document_list[l]
 
     cluster = {}
+    distance_from_mean = {}
 
     avg_vect = {}
     avg_count_vect = {}
@@ -150,6 +155,8 @@ def k_means(document_list):
     oldB = {}
     oldCluster = {}
 
+
+    terminate  = 0
     while True:
 
         for doc in document_list:
@@ -165,13 +172,15 @@ def k_means(document_list):
 
             if distance1 > distance2:
                 cluster[doc] = ClusterA
+                distance_from_mean[doc] = distance2
             else:
                 cluster[doc] = ClusterB
+                distance_from_mean[doc] = distance1
 
 
-            first_mean ,second_mean = avg_vector(cluster)
+        first_mean ,second_mean = meanVector(cluster,distance_from_mean)
 
-            __emptyVect = False
+        __emptyVect = False
 
         _changeFlag = cluserChanged(cluster,oldCluster)
 
@@ -181,6 +190,10 @@ def k_means(document_list):
 
         oldCluster = cluster
 
+        terminate += 1
+        if terminate > 1000:
+            print("breked ")
+            break
 
 
 
@@ -208,7 +221,7 @@ def cluserChanged(cluster,oldCluster):
 
 
 
-def avg_vector(cluser):
+def avg_vector(cluser,distance_from_mean):
 
     meanCluserA = {}
     meanCluserACnt = {}
@@ -254,4 +267,33 @@ def avg_vector(cluser):
         for key ,val in meanCluserB.items():
             meanCluserB[key] = round((meanCluserB[key] / meanCluserBCnt[key]),3)
 
+
+
+
     return meanCluserA,meanCluserB
+
+
+
+def meanVector(cluser,distance_mean):
+    a = {}
+    b = {}
+
+    for key ,val in cluser.items():
+
+        if val == ClusterA:
+            a[key] = distance_mean[key]
+        else:
+            b[key] = distance_mean[key]
+
+    a = sorted(a.items(), key=lambda x: x[1])
+    b = sorted(b.items(), key=lambda x: x[1])
+
+    len_a = int(len(a)/2)
+    len_b = int(len(b)/2)
+
+    print(a)
+
+    a_vect = returnVect(a[len_a][0])
+    b_vect = returnVect(b[len_b][0])
+
+    return a_vect,b_vect
