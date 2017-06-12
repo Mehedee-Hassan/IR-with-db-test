@@ -13,8 +13,8 @@ import re
 import time
 import pymongo
 from pymongo import MongoClient
-
-
+from pqdict import pqdict
+from hierarchical_cluster_lib import HClust,DistanceMatrix
 # Indexing
 startTime = time.time()
 index = {}
@@ -29,10 +29,11 @@ db = CN.getDatabase(client)
 index_col_name = CN.indexCollectionName()
 tfvectDoc_col_name = CN.tfvCollectionName()
 document_col_name = CN.documentCollectionName()
+import queue
 
+no_cluster = 'NC'
 
 # ==============================
-import queue
 
 
 clusters = {}
@@ -42,40 +43,97 @@ def hierarchical(doc_list):
 
     distance_dic = localDistance(doc_list)
 
-    pair_list = make_pair_init(distance_dic)
+    distanceMat = DistanceMatrix(distance_dictionary=distance_dic,obs_list=doc_list)
+
+    hc = HClust(distanceMat)
+
+    clusterlist = hc.n_clusters(10)
+    print(clusterlist)
+
+    # pair_list = make_pair_init(distance_dic)
 
 
 
-    makeCluster_old(distance_dic, doc_list)
+    # makeCluster(pair_list,doc_list)
+
+    # makeCluster_old(distance_dic, doc_list)
+
+
+
+# def makeCluster(pair_list,doc_list):
+#     level = []
+#     cluster_list = {}
+#     temp_doc_list = doc_list
+#     cluster_name  = 0
+#     cluster_level = 0
+#     matrix = {}
+#
+#
+#     while pair_list.not_empty():
+#
+#         tuple = pair_list.get()
+#
+#         if tuple[2] != no_cluster:
+#
+#             cluster_list[cluster_name] = []
+#             tuple[2] = cluster_name
+#             cluster_list[cluster_name].append(tuple[1])
+#             cluster_list[cluster_name].append(tuple[2])
+#
+#             matrix[cluster_name] = tuple[1]
+#
+#             isert(pair_list,tuple[1],cluster_name,temp_doc_list)
+#
+#             cluster_name += 1
+#         else :
+#
+#             if tuple[3] not in cluster_list:
+#                 cluster_list[tuple[3]] =[]
+#
+#             cluster_list[tuple[3]].append(tuple[2])
+#
+#
+#
+#
+#         distance_from_cluster()
+
+
+
+# def distance_from_cluster():
+
+# def isert(pair_list,doc_id,name,temp_doc_list):
+#
+#     for key,val in temp_doc_list[doc_id]:
+#         pair_list.put((val,doc_id,key,name))
 
 
 
 
-def make_pair_init(distance_dic):
-
-    pq = queue.PriorityQueue()
 
 
 
-    for key,doc_dictionary in distance_dic:
-
-        for id_key,distance in doc_dictionary:
-
-            # first document id = key and id = document id_key
-            # val = cosine distance between two document
-            # NC = not a cluster
-            pq.put((distance , key ,id_key,'NC'))
-
-
-
-    return pq
-
-
-
-
-
-
-
+# def make_pair_init(distance_dic):
+#
+#     pq = queue.PriorityQueue()
+#
+#
+#     distance_dic_temp = distance_dic
+#
+#     for key,doc_dictionary in distance_dic_temp:
+#
+#         for id_key,distance in doc_dictionary:
+#
+#             # first document id = key and id = document id_key
+#             # val = cosine distance between two document
+#             # NC = not a cluster
+#             pq.put((distance , key ,id_key,'NC'))
+#
+#
+#             if id_key in distance_dic_temp:
+#                 del distance_dic_temp[id_key][key]
+#
+#
+#     return pq
 
 
 
@@ -154,8 +212,8 @@ def localDistance(doc_list):
 
 
 
-        for key ,val in distance.items():
-            distance[key] = ((sorted(val.items(), key=lambda x: x[1],reverse=True)))
+        # for key ,val in distance.items():
+        #     distance[key] = ((sorted(val.items(), key=lambda x: x[1],reverse=True)))
 
 
 
@@ -169,67 +227,67 @@ def localDistance(doc_list):
 # old unfinished make cluster
 
 
-def makeCluster_old(distance, doc_list):
-
-    max = 0.0
-
-    temp_dict = {}
-    taken = {}
-    cluster = {}
-    cls = 0
-    lenght = len(doc_list)
-    now  = {}
-
-    cl = []
-
-    for i in range(0, lenght):
-
-        if cls not in cluster:
-            cluster[cls] = {}
-        if doc_list[i] in taken:
-            taken[doc_list[i]] = {}
-
-
-        cluster[cls][doc_list[i]] = 2
-        taken[doc_list[i]][cls]  = 2
-
-        now[doc_list[i]] = cls
-
-        cl.append(cls)
-        cls+=1
-
-
-    b = 0
-    while True:
-
-        for i in range(0, lenght):
-
-           if i != lenght-1 and cl[i]!=cl[i+1]:
-
-               key = distance[doc_list[i]].keys()
-
-               for k in key:
-                   if cl[doc_list[i]] != cl[k]:
-
-                       dist_key = list(distance.keys())[0]
-
-                       if k == dist_key:
-                           now[dist_key] = now[doc_list[i]]
-
-                       else:
-
-
-               print(key[0]," ", list(distance.keys())[0])
-
-
-
-
-           print('now =', i, ' ', j)
-
-
-        b += 1
-        if b > 1000:
-            break
+# def makeCluster_old(distance, doc_list):
+#
+#     max = 0.0
+#
+#     temp_dict = {}
+#     taken = {}
+#     cluster = {}
+#     cls = 0
+#     lenght = len(doc_list)
+#     now  = {}
+#
+#     cl = []
+#
+#     for i in range(0, lenght):
+#
+#         if cls not in cluster:
+#             cluster[cls] = {}
+#         if doc_list[i] in taken:
+#             taken[doc_list[i]] = {}
+#
+#
+#         cluster[cls][doc_list[i]] = 2
+#         taken[doc_list[i]][cls]  = 2
+#
+#         now[doc_list[i]] = cls
+#
+#         cl.append(cls)
+#         cls+=1
+#
+#
+#     b = 0
+#     while True:
+#
+#         for i in range(0, lenght):
+#
+#            if i != lenght-1 and cl[i]!=cl[i+1]:
+#
+#                key = distance[doc_list[i]].keys()
+#
+#                for k in key:
+#                    if cl[doc_list[i]] != cl[k]:
+#
+#                        dist_key = list(distance.keys())[0]
+#
+#                        if k == dist_key:
+#                            now[dist_key] = now[doc_list[i]]
+#
+#                        else:
+#
+#
+#                print(key[0]," ", list(distance.keys())[0])
+#
+#
+#
+#
+#            print('now =', i, ' ', j)
+#
+#
+#         b += 1
+#         if b > 1000:
+#             break
 
 
 
