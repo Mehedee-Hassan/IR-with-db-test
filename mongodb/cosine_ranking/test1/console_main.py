@@ -14,7 +14,7 @@ from pymongo import MongoClient
 import temp_query_cosine as qur
 from bson.objectid import ObjectId
 import k_means
-
+import hierarchical_clustering as hierarchical
 
 
 
@@ -74,8 +74,6 @@ class browser():
         results = qur.rankDocuments(index, words, db[document_col_name].count())
 
 
-
-
         tt = []
 
         for result in results:
@@ -93,8 +91,12 @@ class browser():
 
         print("list == ",doclist,'\n  length = ',len(doclist))
 
-        # if len(doclist)!=0:
-        #     k_means.k_means(doclist)
+        if len(doclist)!=0:
+            # k_means.k_means(doclist)
+
+            print("test")
+
+            hierarchical.hierarchical(doclist)
 
 
 

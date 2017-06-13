@@ -45,9 +45,13 @@ def hierarchical(doc_list):
 
     distanceMat = DistanceMatrix(distance_dictionary=distance_dic,obs_list=doc_list)
 
-    hc = HClust(distanceMat)
+    hc = HClust(distanceMat,linkage_criterion='min')
 
-    clusterlist = hc.n_clusters(10)
+    # clusterlist = hc.n_clusters(7)
+    # up to 10% matching documents
+    clusterlist = hc.minimum_distance_cluster(min_limit=0.1)
+
+    # cut = hc.cut(3)
     print(clusterlist)
 
     # pair_list = make_pair_init(distance_dic)

@@ -18,14 +18,17 @@ class Node(object):
     HClust.clusters to obtain a list of all the clusters.
     """
 
-    def __init__(self, id, depth, parent=None, children=None):
+    def __init__(self, id, depth, parent=None, children=None
+                 # ,lowest_distance =0
+                 ):
         self.id = id
         self.parent = parent
         self.children = children
         self.depth = depth
+        self.cluster_distance = 0
 
     def __repr__(self):
-        return '(%s %f)' % (self.id, self.depth)
+        return '(node = %s %f %f)' % (self.id, self.depth,self.cluster_distance)
 
     def __key(self):
         return (self.id, self.depth)
@@ -153,13 +156,31 @@ class DistanceMatrix:
 
         for a, bs in self.distances.items():
             for b, dist in bs.items():
-                if current_closest is None or \
-                                dist < current_closest:
+
+
+                if current_closest is None:
                     current_closest = dist
                     current_a = a
                     current_b = b
 
+                elif dist > current_closest:
+
+                    # if current_closest > 0.01:
+
+                    current_closest = dist
+                    current_a = a
+                    current_b = b
+
+
+
+        print ("a = ",current_a," b = ",current_b," distance = ",current_closest)
+
+
+        # if current_closest > 0.099:
+        #     return None
+
         return (current_a, current_b)
+
 
     def distance(self, a, b):
         """
@@ -173,6 +194,7 @@ class DistanceMatrix:
             if a in self.distances[b]:
                 return self.distances[b][a]
         return None
+
 
     def to_nodes(self):
         """
@@ -259,7 +281,7 @@ class HClust:
             return m
 
         elif self.linkage_criterion == 'min':
-            m = sys.maxint
+            m = sys.maxsize
             for obs_a in a.id:
                 for obs_b in b.id:
                     d = self.dist_matrix.distance(obs_a, obs_b)
@@ -283,8 +305,14 @@ class HClust:
         """
         Merge two nodes into a cluster.
         """
+
+
+
         c = Node(a.id + b.id, self.working_matrix.distance(a, b) * 0.5,
                  children=(a, b))
+
+        c.cluster_distance= self.working_matrix.distance(a,b)
+
         self._cluster_parent(a, c)
         self._cluster_parent(b, c)
         self.working_matrix.obs.remove(a)
@@ -321,6 +349,8 @@ class HClust:
             del self.working_matrix.distances[c]
 
         self.working_matrix.obs.append(c)
+
+
 
     def _ids(self, l):
         """
@@ -383,6 +413,60 @@ class HClust:
                 node = node.parent
             if node not in ret:
                 ret.append(node)
+
+        return self._ids(ret)
+
+    def minimum_distance_cluster(self, min_limit=0.1):
+        """
+        Return the tuple of clusters obtained when the clustering is stopped
+        at the specified number of clusters n where no cluster distance is less than 0.1.
+
+        Always returns a tuple, even if there is only one member.
+        """
+
+        # minimum cosine distance to form a cluster
+        # at least 10% document match
+
+
+
+        ret = self._leaves()
+
+        # print("cluster = ",self.clusters)
+        # print("ret = ",ret)
+        # pass
+        itr = 0
+        len_of_documents =len(ret)
+        # while len(ret) > n:
+
+        # iterate until all the separate number of
+        # nodes in ret is visited
+
+        while itr < len_of_documents:
+            itr += 1
+            # find the parent with the smallest depth
+            lowest = None
+            for node in ret:
+                if node.parent != None:
+                    if node.parent.children[0] in ret and \
+                                    node.parent.children[1] in ret:
+                        if lowest is None:
+                            if node.parent.cluster_distance > min_limit:
+                                # print("here")
+                                lowest = node.parent
+                        elif node.parent.depth < lowest.depth:
+                            # print("depth = ",node.parent.depth)
+
+                            if node.parent.cluster_distance >min_limit:
+                                lowest = node.parent
+
+                    print("distance of cluster = ",node.parent.cluster_distance,' ',node)
+
+            if lowest != None:
+
+                ret.remove(lowest.children[0])
+                ret.remove(lowest.children[1])
+                ret.append(lowest)
+            # print("num of cluster = ",len(ret))
 
         return self._ids(ret)
 
